@@ -9,24 +9,24 @@ It provides clean, structured, auto-formatted logs for:
 The V3 version introduces full compatibility with mixed event types — handling both
 dict (frontend events) and bytes (API streaming events) without breaking the stream pipeline.
 
-⸻
+---
 
-✨ Features
+## ✨ Features
 
-🔍 Developer Logging (Toggle Anytime)
+### 🔍 Developer Logging (Toggle Anytime)
 
 Enable or disable detailed logging using a simple boolean switch.
 When disabled, the middleware stays completely silent and cost-free.
 
-📥 INLET Logging (User Requests)
+### 📥 INLET Logging (User Requests)
 
 Captures the latest incoming user message, including optional display of the entire __user__ dictionary.
 
-📤 OUTLET Logging (Saved Responses)
+### 📤 OUTLET Logging (Saved Responses)
 
 Captures the assistant’s final response before saving to frontend.
 
-📡 STREAM Logging (Real-time AI Output)
+### 📡 STREAM Logging (Real-time AI Output)
 
 Supports both:
 	•	Frontend delta (dict format)
@@ -34,7 +34,7 @@ Supports both:
 
 Automatically detects type and logs appropriately, ensuring compatibility with custom models, proxies, and unusual streaming formats.
 
-🔧 Configurable Valves
+### 🔧 Configurable Valves
 
 Control logging behavior with fine-grained options:
 	•	enabled
@@ -45,25 +45,9 @@ Control logging behavior with fine-grained options:
 	•	truncate_message
 	•	priority
 
-⸻
+---
 
-📦 Installation
-
-Add the Filter class into your Open WebUI plugin or Python middleware.
-
-your_project/
-└── filters/
-    └── oi_devmode.py
-
-Import it in your filter registry:
-
-from filters.oi_devmode import Filter
-
-Open WebUI will automatically load it.
-
-⸻
-
-🛠 Usage
+## 🛠 Usage
 
 Enable logging temporarily
 
@@ -79,10 +63,11 @@ Truncate long messages (optional)
 filter.valves.truncate_message = 200
 
 
-⸻
+---
 
-🧪 Example Log Output
+## 🧪 Example Log Output
 
+```
 ------------------------------ [DEV_LOGGER | INLET] ------------------------------
 USER: test@example.com (Role: admin)
 MODEL: gpt-4.1
@@ -95,29 +80,34 @@ __USER__ dictionary details:
   "role": "admin"
 }
 ------------------------------------------------------------------------------
+```
 
 STREAM logs:
 
+```
 [DEV_LOGGER | STREAM] (Dict) AI streaming: Sure, let me check...
+```
 
 Or bytes-format API:
 
+```
 [DEV_LOGGER | STREAM] (Bytes) AI streaming: {"delta":{"content":"Hello"}}
+```
 
 
 ⸻
 
-📘 API Summary
+## 📘 API Summary
 
-inlet()
+### `inlet()`
 
 Logs incoming user messages.
 
-stream()
+### `stream()`
 
 Logs every streamed partial output from the model.
 
-outlet()
+### `outlet()`
 
 Logs the final assistant message and metadata.
 
@@ -125,7 +115,7 @@ All hooks return the original event unchanged, preserving pipeline integrity.
 
 ⸻
 
-🧭 When to Use This
+## 🧭 When to Use This
 
 ✔ Debugging custom models
 ✔ Developing new filters or pipelines
@@ -135,7 +125,7 @@ All hooks return the original event unchanged, preserving pipeline integrity.
 
 ⸻
 
-🚫 When NOT to Use
+## 🚫 When NOT to Use
 
 ✖ Production (unless you purposely want verbose logs)
 ✖ Handling sensitive user info (remember log_user_info=True)
@@ -143,19 +133,15 @@ All hooks return the original event unchanged, preserving pipeline integrity.
 
 ⸻
 
-🤝 Contributing
+## 🤝 Contributing
 
 Pull requests and improvements are welcome!
 Submit issues and ideas via GitHub.
 
 ⸻
 
-❤️ Support the Project
+## ❤️ Support the Project
 
 If this tool improves your workflow, consider supporting:
 
 https://breathai.top/
-
-	•	或者想我帮你创建 PyPI 发布版本
-
-我也能继续帮你。
